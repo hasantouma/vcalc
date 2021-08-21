@@ -1,6 +1,0 @@
-(library
- (name lib))
-
-(ocamllex lexer)
-(ocamlyacc parser)
-

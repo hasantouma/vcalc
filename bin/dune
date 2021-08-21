@@ -1,3 +1,4 @@
 (executable
  (name calculator)
- (libraries lib))
+ (libraries repl))
+

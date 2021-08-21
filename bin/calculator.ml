@@ -1,4 +1,3 @@
-open Lib
 
 let parse_cmd_line_args () =
   let speclist = [

@@ -1,7 +1,7 @@
 open Ast
 open Interp
-open Lexer
-open Parser
+open Parser.Lex
+open Parser.Parse
 open Pp
 
 let parse_file (name : string) : expr =
