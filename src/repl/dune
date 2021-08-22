@@ -1,4 +1,4 @@
 (library
  (name repl)
- (libraries ast interp parser pp viz))
+ (libraries ast generator interp parser pp viz))
 
