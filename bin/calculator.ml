@@ -1,7 +1,8 @@
 
 let parse_cmd_line_args () =
   let speclist = [
-    ("-f", Arg.String Repl.interp_file, "<file_path> Parsing file")
+    ("-f", Arg.String Repl.interp_file, "<file_path> Parsing file");
+    ("-v", Arg.String Repl.visualize, "<file_path> File to visualize")
   ] in
   let usage_msg = "Visual Calculator" in
   Arg.parse speclist print_endline usage_msg

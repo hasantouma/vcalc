@@ -3,6 +3,7 @@ open Interp
 open Parser.Lex
 open Parser.Parse
 open Pp
+open Viz
 
 let parse_file (name : string) : expr =
   let chan = open_in name in
@@ -32,4 +33,8 @@ let rec repl () : unit =
 let interp_file (file_name : string) : unit =
   let e : expr = parse_file file_name in
   handle_display e
+
+let visualize (file_name : string) : unit =
+  let e : expr = parse_file file_name in
+  write_expr_to_graphviz e
 

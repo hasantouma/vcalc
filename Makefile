@@ -8,6 +8,8 @@ run:
 .PHONY: clean
 clean:
 	rm -f calc
+	rm -f mygraph.dot
+	rm -f mygraph.png
 	dune clean
 
 # You can stick this section in your own project if you wish.
