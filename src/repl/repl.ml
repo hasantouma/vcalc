@@ -36,5 +36,6 @@ let interp_file (file_name : string) : unit =
 
 let visualize (file_name : string) : unit =
   let e : expr = parse_file file_name in
+  handle_display e;
   write_expr_to_graphviz e
 

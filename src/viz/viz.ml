@@ -83,5 +83,5 @@ let write_expr_to_graphviz (expr : expr) : unit =
   let file = open_out_bin name in
   Dot.output_graph file g;
   let _ = Sys.command (Printf.sprintf "dot %s -Tpng -o mygraph.png && rm %s" name name) in
-  ()
+  print_endline "Success! Open 'mygraph.png' to see your visualized expr."
 
