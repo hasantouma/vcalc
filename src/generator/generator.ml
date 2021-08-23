@@ -9,7 +9,7 @@ let next_float () : float = random_float_gen 1.0
 
 (* Initialize int generator - for random value *)
 let random_int_gen : (int -> int) = Random.int
-let next_int () : int = (random_int_gen 1024) + 1 (* Avoiding the 'Divide by zero' case for now - not sure how to handle testing it *)
+let next_int () : int = random_int_gen 100
 
 let random_bop () =
   match next_float () with

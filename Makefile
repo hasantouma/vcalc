@@ -5,6 +5,10 @@ build:
 run:
 	dune exec bin/calculator.exe
 
+.PHONY: test
+test:
+	dune runtest
+
 .PHONY: clean
 clean:
 	rm -f calc
