@@ -18,8 +18,12 @@ let handle_exit repl_in =
     exit 0
 
 let handle_display (e : expr) : unit =
-  let answer = string_of_int (interp e) in
-  print_endline ((pp e) ^ " = " ^ answer)
+  match interp e with
+  | Some n ->
+      let answer = string_of_int n in
+      print_endline ((pp e) ^ " = " ^ answer)
+  | None ->
+      print_endline "Error: Divide by zero"
 
 let rec repl () : unit =
   output_string stdout "> ";

@@ -9,9 +9,14 @@ let get_bop bop =
 
 let rec interp expr =
   match expr with
-  | EInt n -> n
+  | EInt n -> Some n
   | EBinOp(l, bop, r) ->
-      let left = interp l in
-      let right = interp r in
-      (get_bop bop) left right
+      (match interp l with
+      | Some left ->
+          (match interp r with
+          | Some right ->
+              (try Some ((get_bop bop) left right) with
+                Division_by_zero -> None)
+          | None -> None)
+      | None -> None)
 
