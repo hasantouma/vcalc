@@ -40,7 +40,11 @@ let visualize (file_name : string) : unit =
   handle_display e;
   write_expr_to_graphviz e
 
-let interp_rand_expr (n : int) : unit =
+let rand_expr (viz : bool) (n : int) : unit =
   let r : expr = rand_expr n in
-  handle_display r
+  handle_display r;
+  if viz then
+    write_expr_to_graphviz r
+  else
+    ()
 
