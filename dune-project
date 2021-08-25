@@ -15,7 +15,8 @@
   (name vcalc)
   (synopsis "Visual Calculator")
   (depends
+    dune
     (ocaml
       (>= 4.02.3))
-    dune
+    ocamlgraph
     ounit2))
