@@ -6,8 +6,9 @@ authors: ["Hasan Touma"]
 homepage: "https://github.com/hasantouma/vcalc"
 bug-reports: "https://github.com/hasantouma/vcalc/issues"
 depends: [
-  "ocaml" {>= "4.02.3"}
   "dune" {>= "2.9"}
+  "ocaml" {>= "4.02.3"}
+  "ocamlgraph"
   "ounit2"
   "odoc" {with-doc}
 ]
