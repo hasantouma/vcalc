@@ -9,7 +9,7 @@ let call_bc (s : string) =
 let test_rand _ctxt =
   for i = 0 to 100 do
     print_endline (string_of_int i);
-    let r : expr = Generator.rand_expr 5 in
+    let r : expr = Generator.rand_expr 3 in
     let p = Pp.pp r in
     match Interp.interp r with
     | Some i ->
