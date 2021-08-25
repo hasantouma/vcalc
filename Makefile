@@ -1,9 +1,9 @@
 build:
-	dune build bin/calculator.exe
-	ln -sf _build/default/bin/calculator.exe calc
+	dune build bin/vcalc.exe
+	ln -sf _build/default/bin/vcalc.exe vcalc
 
 run:
-	dune exec bin/calculator.exe
+	dune exec bin/vcalc.exe
 
 .PHONY: test
 test:
@@ -11,7 +11,7 @@ test:
 
 .PHONY: clean
 clean:
-	rm -f calc
+	rm -f vcalc
 	rm -f mygraph.dot
 	rm -f mygraph.png
 	dune clean

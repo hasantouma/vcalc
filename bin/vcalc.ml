@@ -7,7 +7,7 @@ let parse_cmd_line_args () =
     ("-gv", Arg.Int (rand_expr true), "<int> Generate, and visualize, random program of size n");
     ("-v", Arg.String visualize, "<file_path> File to visualize")
   ] in
-  let usage_msg = "Visual Calculator" in
+  let usage_msg = "vcalc (Visual Calculator)" in
   Arg.parse speclist print_endline usage_msg
 
 
