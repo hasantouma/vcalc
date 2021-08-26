@@ -1,3 +1,4 @@
 (library
- (name ast))
+ (name ast)
+ (libraries num))
 

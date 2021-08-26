@@ -2,7 +2,7 @@
   open Ast
 %}
 
-%token <int> INT
+%token <Big_int.big_int> INT
 %token LP RP LB RB LCB RCB
 %token PLUS MINUS TIMES DIV
 %token EOF

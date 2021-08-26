@@ -1,6 +1,6 @@
 (tests
   (names tests)
-  (libraries ast generator interp ounit2 pp repl))
+  (libraries ast num generator interp ounit2 pp repl))
 
 (env
   (dev

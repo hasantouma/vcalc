@@ -1,4 +1,4 @@
 (library
  (name pp)
- (libraries ast))
+ (libraries ast num))
 

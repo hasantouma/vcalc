@@ -5,6 +5,6 @@ type bop =
   | BDiv
 
 type expr =
-  | EInt of int
+  | EInt of Big_int.big_int
   | EBinOp of expr * bop * expr
 

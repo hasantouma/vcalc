@@ -1,4 +1,5 @@
 open Ast
+open Big_int
 
 (* Initialize random generator *)
 let () = Random.init (int_of_float (Unix.time ()))
@@ -9,7 +10,7 @@ let next_float () : float = random_float_gen 1.0
 
 (* Initialize int generator - for random value *)
 let random_int_gen : (int -> int) = Random.int
-let next_int () : int = random_int_gen 100
+let next_int () : big_int = big_int_of_int (random_int_gen 100)
 
 let random_bop () =
   match next_float () with

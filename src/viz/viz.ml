@@ -1,7 +1,12 @@
 open Ast
+open Big_int
+
+type node_t =
+  | NInt of string
+  | NBinOp of string
 
 module Node = struct
-   type t = expr * int
+   type t = node_t * int
    let compare = compare
    let hash = Hashtbl.hash
    let equal = (=)
@@ -16,31 +21,33 @@ end
 
 module G =  Graph.Persistent.Digraph.ConcreteBidirectionalLabeled(Node)(Edge)
 
-let label_of_expr_type expr lst =
-   let label = match expr with
-   | EInt n -> (string_of_int n)
-   | EBinOp(_, BPlus, _) -> "+"
-   | EBinOp(_, BMinus, _) -> "-"
-   | EBinOp(_, BTimes, _) -> "*"
-   | EBinOp(_, BDiv, _) -> "/"
-in `Label label :: lst
+let node_t_constructor expr =
+   match expr with
+   | EInt n -> NInt (string_of_big_int n)
+   | EBinOp(_, BPlus, _) -> NBinOp "+"
+   | EBinOp(_, BMinus, _) -> NBinOp "-"
+   | EBinOp(_, BTimes, _) -> NBinOp "*"
+   | EBinOp(_, BDiv, _) -> NBinOp "/"
 
-let shape_of_expr_type expr lst =
+let label_of_node_t expr lst =
+  let label = match expr with
+   | NInt n -> n
+   | NBinOp op -> op
+  in `Label label :: lst
+
+let shape_of_node_t expr lst =
    let shape = match expr with
-   | EInt _ -> `Box
-   | EBinOp(_, BPlus, _) -> `Oval
-   | EBinOp(_, BMinus, _) -> `Oval
-   | EBinOp(_, BTimes, _) -> `Oval
-   | EBinOp(_, BDiv, _) -> `Oval
+   | NInt _ -> `Box
+   | NBinOp _ -> `Oval
 in `Shape shape :: lst
 
-let style_of_expr_type expr lst =
+let style_of_node_t expr lst =
    match expr with
-   | EInt _ -> `Style `Filled :: lst
+   | NInt _ -> `Style `Filled :: lst
    | _ -> lst
 
-let vertex_attr (expr : expr) : Graph.Graphviz.DotAttributes.vertex list =
-   label_of_expr_type expr [] |> shape_of_expr_type expr |> style_of_expr_type expr
+let vertex_attr (expr : node_t) : Graph.Graphviz.DotAttributes.vertex list =
+  label_of_node_t expr [] |> shape_of_node_t expr |> style_of_node_t expr
 
 module Dot = Graph.Graphviz.Dot(struct
    include G (* use the graph module from above *)
@@ -61,13 +68,14 @@ let fresh =
 
 let rec generate_graph (g : G.t) (expr : expr) =
    let id = fresh () in
+   let n = node_t_constructor expr in
    match expr with
    | EInt _ -> (* Terminal Node *)
-      let vertex = G.V.create (expr, id) in
+      let vertex = G.V.create (n, id) in
       let g' = G.add_vertex g vertex in
       (g', vertex)
    | EBinOp(l, _, r) ->
-      let bin_op_vertex = G.V.create (expr, id) in
+      let bin_op_vertex = G.V.create (n, id) in
       let g = G.add_vertex g bin_op_vertex in
       let (g, lv) = generate_graph g l in
       let (g, rv) = generate_graph g r in

@@ -1,4 +1,5 @@
 open Ast
+open Big_int
 open Generator
 open Interp
 open Parser.Lex
@@ -20,7 +21,7 @@ let handle_exit repl_in =
 let handle_display (e : expr) : unit =
   match interp e with
   | Some n ->
-      let answer = string_of_int n in
+      let answer = string_of_big_int n in
       print_endline ((pp e) ^ " = " ^ answer)
   | None ->
       print_endline "Error: Divide by zero"

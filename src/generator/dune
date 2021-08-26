@@ -1,4 +1,4 @@
 (library
  (name generator)
- (libraries ast unix))
+ (libraries ast num unix))
 

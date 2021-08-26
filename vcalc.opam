@@ -7,6 +7,7 @@ homepage: "https://github.com/hasantouma/vcalc"
 bug-reports: "https://github.com/hasantouma/vcalc/issues"
 depends: [
   "dune" {>= "2.9"}
+  "num"
   "ocaml" {>= "4.02.3"}
   "ocamlgraph"
   "ounit2"

@@ -16,6 +16,7 @@
   (synopsis "Visual Calculator")
   (depends
     dune
+    num
     (ocaml
       (>= 4.02.3))
     ocamlgraph
