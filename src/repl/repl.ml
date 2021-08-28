@@ -40,6 +40,12 @@ let interp_file (file_name : string) : unit =
   let e : expr = parse_file file_name in
   handle_display e
 
+let interp_stdin (s : string) : unit =
+  let lexbuf = Lexing.from_string s in
+  let e : expr = main token lexbuf in
+  handle_display e;
+  exit 0
+
 let visualize (file_name : string) : unit =
   let e : expr = parse_file file_name in
   handle_display e;

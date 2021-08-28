@@ -10,15 +10,24 @@ let parse_cmd_line_args () =
   let usage_msg = "vcalc (Visual Calculator)" in
   Arg.parse speclist print_endline usage_msg
 
-
-
 let () =
   let args_len = Array.length Sys.argv in
-  if args_len > 1 then
-    parse_cmd_line_args ()
-  else
-    begin
+  if args_len = 1 then
+    (
       print_endline "Welcome to the 'Visual Calculator' REPL";
       repl ()
-    end
+    )
+  else if (args_len <= 3) && (Sys.argv.(1).[0] = '-') then
+    (
+      parse_cmd_line_args ()
+    )
+  else if (args_len = 2) && (Sys.argv.(1).[0] <> '-') then
+    (
+      interp_stdin Sys.argv.(1)
+    )
+  else
+    (
+      print_endline "incorrect input";
+      exit 1
+    )
 
