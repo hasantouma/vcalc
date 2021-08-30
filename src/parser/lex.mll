@@ -1,5 +1,6 @@
 {
  open Big_int
+ open Exceptions
  open Parse
  exception Eof
 }
@@ -17,6 +18,6 @@ rule token = parse
 | '/' { DIV }
 | ['0'-'9']+ as lxm { INT(big_int_of_string lxm) }
 | eof { EOF }
-| _ as lxm { Printf.printf "Illegal character %c" lxm; failwith "Bad input" }
+| _ as lxm { raise (BadInput (Printf.sprintf "Illegal character %c" lxm)) }
 
 
