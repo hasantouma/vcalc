@@ -3,5 +3,5 @@
  (libraries ast exceptions num))
 
 (ocamllex lex)
-(ocamlyacc parse)
 
+(ocamlyacc parse)

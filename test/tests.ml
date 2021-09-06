@@ -3,6 +3,7 @@ open Big_int
 open OUnit2
 
 let total_counter = ref 0
+
 let counter = ref 0
 
 let call_bc (s : string) =
@@ -20,15 +21,9 @@ let test_rand _ctxt =
     | Some i ->
       counter := !counter + 1;
       assert_equal (string_of_big_int i) (call_bc p) ~msg:("interp: " ^ p)
-    | None ->
-      print_endline "Divide by zero case"
+    | None -> print_endline "Divide by zero case"
   done
 
-
-let suite =
-  "tests" >::: [
-    "test_rand" >:: test_rand
-  ]
+let suite = "tests" >::: [ "test_rand" >:: test_rand ]
 
 let _ = run_test_tt_main suite
-

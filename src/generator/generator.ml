@@ -5,11 +5,13 @@ open Big_int
 let () = Random.init (int_of_float (Unix.time ()))
 
 (* Initialize float generator - for coin flip *)
-let random_float_gen : (float -> float) = Random.float
+let random_float_gen : float -> float = Random.float
+
 let next_float () : float = random_float_gen 1.0
 
 (* Initialize int generator - for random value *)
-let random_int_gen : (int -> int) = Random.int
+let random_int_gen : int -> int = Random.int
+
 let next_int () : big_int = big_int_of_int (random_int_gen 1024)
 
 let random_bop () =
@@ -26,5 +28,4 @@ let rec rand_expr n =
     let left = rand_expr (n - 1) in
     let right = rand_expr (n - 1) in
     let bop = random_bop () in
-    EBinOp(left, bop, right)
-
+    EBinOp (left, bop, right)

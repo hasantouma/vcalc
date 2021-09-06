@@ -1,8 +1,8 @@
 (tests
-  (names tests)
-  (libraries ast num generator interp ounit2 pp repl))
+ (names tests)
+ (libraries ast num generator interp ounit2 pp repl))
 
 (env
-  (dev
-    (flags (:standard -warn-error -A))))
-
+ (dev
+  (flags
+   (:standard -warn-error -A))))
