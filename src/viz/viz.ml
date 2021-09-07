@@ -8,7 +8,8 @@ type node_t =
 module Node = struct
   type t = node_t * int
 
-  let compare = compare
+  (* This will preserve the order of nodes, which will preserve the order of operation in the graph *)
+  let compare (_, id1) (_, id2) = compare id1 id2
 
   let hash = Hashtbl.hash
 
@@ -59,6 +60,7 @@ let style_of_node_t expr lst =
 let vertex_attr (expr : node_t) : Graph.Graphviz.DotAttributes.vertex list =
   label_of_node_t expr [] |> shape_of_node_t expr |> style_of_node_t expr
 
+(* Graphviz.DotAttributes : http://ocamlgraph.lri.fr/doc/Graphviz.DotAttributes.html#TYPEgraph *)
 module Dot = Graph.Graphviz.Dot (struct
   include G (* use the graph module from above *)
 
