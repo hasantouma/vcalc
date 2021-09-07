@@ -16,8 +16,12 @@
   (synopsis "Visual Calculator")
   (depends
     dune
+    (menhir
+      (>= 2.1))
     num
     (ocaml
       (>= 4.02.3))
     ocamlgraph
     ounit2))
+
+(using menhir 2.1)

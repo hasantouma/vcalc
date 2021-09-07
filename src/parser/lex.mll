@@ -4,8 +4,10 @@
  open Parse
  exception Eof
 }
+
+let white = [' ' '\t' '\n' '\r']*
 rule token = parse
-  [' ' '\t' '\n' '\r']	{ token lexbuf }
+  white	{ token lexbuf }
 | '(' { LP }
 | ')' { RP }
 | '[' { LB }

@@ -2,6 +2,8 @@
  (name parser)
  (libraries ast exceptions num))
 
-(ocamllex lex)
+(ocamllex
+ (modules lex))
 
-(ocamlyacc parse)
+(menhir
+ (modules parse))

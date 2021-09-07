@@ -10,17 +10,16 @@
 %type <Ast.expr> main
 %left PLUS MINUS
 %left TIMES DIV
-%nonassoc LB
 %%
 main:
   expr EOF { $1 }
 expr:
-| INT { EInt $1 }
-| expr PLUS expr { EBinOp($1, BPlus, $3) }
-| expr MINUS expr { EBinOp($1, BMinus, $3) }
-| expr TIMES expr { EBinOp($1, BTimes, $3) }
-| expr DIV expr { EBinOp($1, BDiv, $3) }
-| LP expr RP { $2 }
-| LB expr RB { $2 }
-| LCB expr RCB { $2 }
+| n = INT { EInt n }
+| l = expr; PLUS; r = expr { EBinOp (l, BPlus, r) }
+| l = expr; MINUS; r = expr { EBinOp (l, BMinus, r) }
+| l = expr; TIMES; r = expr { EBinOp (l, BTimes, r) }
+| l = expr; DIV; r = expr { EBinOp (l, BDiv, r) }
+| LP; e = expr; RP { e }
+| LB; e = expr; RB { e }
+| LCB; e = expr; RCB { e }
 
