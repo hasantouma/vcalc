@@ -23,7 +23,14 @@ let random_bop () =
 
 let rec rand_expr n =
   if n = 0 then
-    EInt (next_int ())
+    let sign =
+      if next_float () < 0.5 then
+        1
+      else
+        -1
+    in
+    let n = mult_int_big_int sign (next_int ()) in
+    EInt n
   else
     let left = rand_expr (n - 1) in
     let right = rand_expr (n - 1) in
